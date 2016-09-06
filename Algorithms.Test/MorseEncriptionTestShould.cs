@@ -14,7 +14,17 @@ namespace Algorithms.Test
 
             string morse = algorithm.EncriptText("hello world");
 
-            morse.Should().Be(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
+            morse.Should().BeEquivalentTo(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
+        }
+
+        [TestMethod]
+        public void EncriptMorseToText()
+        {
+            MorseAlgorithm algorithm = new MorseAlgorithm();
+
+            string text = algorithm.DecriptMorse(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
+
+            text.Should().BeEquivalentTo("hello world");
         }
     }
 }

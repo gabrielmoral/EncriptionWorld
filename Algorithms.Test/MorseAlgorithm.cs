@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EncriptionAlgorithms.Test;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,66 +8,72 @@ namespace Algorithms.Test
 {
     internal class MorseAlgorithm
     {
-        private Dictionary<char, string> _codes;
-
-        public MorseAlgorithm()
-        {
-            _codes = new Dictionary<char, string>();
-            _codes.Add('A', ".-");
-            _codes.Add('B', "-...");
-            _codes.Add('C', "-.-.");
-            _codes.Add('D', "-..");
-            _codes.Add('E', ".");
-            _codes.Add('F', "..-.");
-            _codes.Add('G', "--.");
-            _codes.Add('H', "....");
-            _codes.Add('I', "..");
-            _codes.Add('J', ".---");
-            _codes.Add('K', "-.-");
-            _codes.Add('L', ".-..");
-            _codes.Add('M', "--");
-            _codes.Add('N', "-.");
-            _codes.Add('O', "---");
-            _codes.Add('P', ".--.");
-            _codes.Add('Q', "--.-");
-            _codes.Add('R', ".-.");
-            _codes.Add('S', "...");
-            _codes.Add('T', "-");
-            _codes.Add('U', "..-");
-            _codes.Add('V', "...-");
-            _codes.Add('W', ".--");
-            _codes.Add('X', "-..-");
-            _codes.Add('Y', "-.--");
-            _codes.Add('Z', "--..");
-            _codes.Add('1', ".----");
-            _codes.Add('2', "..---");
-            _codes.Add('3', "...--");
-            _codes.Add('4', "....-");
-            _codes.Add('5', ".....");
-            _codes.Add('6', "-....");
-            _codes.Add('7', "--...");
-            _codes.Add('8', "---..");
-            _codes.Add('9', "----.");
-            _codes.Add('0', "-----");
-            _codes.Add(' ', "/");
-        }
+        private const string WHITESPACE = " ";
 
         public string EncriptText(string text)
         {
-            StringBuilder sb = text.ToUpper()
-                                   .Aggregate(new StringBuilder(), ConvertCharacter);
+            var morseDictionary = new NormalMorseDictionary();
+
+            StringBuilder sb = text.Aggregate(new StringBuilder(),
+                                 (acc, code) =>
+                                 {
+                                     string convertedCode = TranslateCode(code.ToString(), morseDictionary);
+                                     WriteCode(acc, convertedCode);
+                                     WriteWhitespace(acc);
+
+                                     return acc;
+                                 });
 
             return sb.ToString().TrimEnd();
         }
 
-        private StringBuilder ConvertCharacter(StringBuilder acumulator, char character)
+        internal string DecriptMorse(string morse)
         {
-            const string whitespace = " ";
+            string[] wordSeparator = { " / " };
 
-            acumulator.Append(_codes[character]);
-            acumulator.Append(whitespace);
+            var morseDictionary = new ReverseMorseDictionary();
 
-            return acumulator;
+            StringBuilder sb = morse.Split(wordSeparator, StringSplitOptions.None)
+                                   .Aggregate(new StringBuilder(),
+                                               (acc, word) =>
+                                               {
+                                                   string convertedWord = ConvertMorseWord(word, morseDictionary);
+                                                   WriteCode(acc, convertedWord);
+                                                   WriteWhitespace(acc);
+                                                   return acc;
+                                               });
+
+            return sb.ToString().TrimEnd();
+        }
+
+        private string ConvertMorseWord(string morseWord, MorseDictionaryDefinition morseDictionary)
+        {
+            string[] wordSeparator = { WHITESPACE };
+
+            var codeAcumulator = morseWord.Split(wordSeparator, StringSplitOptions.None)
+                                         .Aggregate(new StringBuilder(), (acc, code) =>
+                                         {
+                                             string convertedCode = TranslateCode(code, morseDictionary);
+                                             WriteCode(acc, convertedCode);
+                                             return acc;
+                                         });
+
+            return codeAcumulator.ToString();
+        }
+
+        private string TranslateCode(string character, MorseDictionaryDefinition morseDictionary)
+        {
+            return morseDictionary.GetTranslation(character);
+        }
+
+        private void WriteCode(StringBuilder acc, string character)
+        {
+            acc.Append(character);
+        }
+
+        private void WriteWhitespace(StringBuilder acc)
+        {
+            acc.Append(WHITESPACE);
         }
     }
 }
