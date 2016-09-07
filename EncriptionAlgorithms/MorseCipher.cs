@@ -1,29 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EncriptionAlgorithms
 {
     public class MorseCipher
     {
-        private const string WHITESPACE = " ";
-
         public string Encript(string text)
         {
             var morseDictionary = new NormalMorseDictionary();
 
-            StringBuilder sb = text.Aggregate(new StringBuilder(),
-                                 (acc, code) =>
-                                 {
-                                     string convertedCode = TranslateCode(code.ToString(), morseDictionary);
-                                     WriteCode(acc, convertedCode);
-                                     WriteWhitespace(acc);
+            var codeGenerator = text.Aggregate(new CodeGenerator(),
+                                 (generator, code) =>
+                                    generator.WriteWord(TranslateCode(code.ToString(), morseDictionary)));
 
-                                     return acc;
-                                 });
-
-            return sb.ToString().TrimEnd();
+            return codeGenerator.Output();
         }
 
         public string Decript(string morse)
@@ -32,47 +22,29 @@ namespace EncriptionAlgorithms
 
             var morseDictionary = new ReverseMorseDictionary();
 
-            StringBuilder sb = morse.Split(wordSeparator, StringSplitOptions.None)
-                                   .Aggregate(new StringBuilder(),
-                                               (acc, word) =>
-                                               {
-                                                   string convertedWord = ConvertMorseWord(word, morseDictionary);
-                                                   WriteCode(acc, convertedWord);
-                                                   WriteWhitespace(acc);
-                                                   return acc;
-                                               });
+            var codeGenerator = morse.Split(wordSeparator, StringSplitOptions.None)
+                                   .Aggregate(new CodeGenerator(),
+                                               (generator, word) =>
+                                                generator.WriteWord(ConvertMorseWord(word, morseDictionary)));
 
-            return sb.ToString().TrimEnd();
+            return codeGenerator.Output();
         }
 
         private string ConvertMorseWord(string morseWord, MorseDictionaryDefinition morseDictionary)
         {
-            string[] wordSeparator = { WHITESPACE };
+            string[] wordSeparator = { " " };
 
-            var codeAcumulator = morseWord.Split(wordSeparator, StringSplitOptions.None)
-                                         .Aggregate(new StringBuilder(), (acc, code) =>
-                                         {
-                                             string convertedCode = TranslateCode(code, morseDictionary);
-                                             WriteCode(acc, convertedCode);
-                                             return acc;
-                                         });
+            var codeGenerator = morseWord.Split(wordSeparator, StringSplitOptions.None)
+                                         .Aggregate(new CodeGenerator(),
+                                         (generator, code) =>
+                                            generator.Write(TranslateCode(code, morseDictionary)));
 
-            return codeAcumulator.ToString();
+            return codeGenerator.Output();
         }
 
         private string TranslateCode(string character, MorseDictionaryDefinition morseDictionary)
         {
             return morseDictionary.GetTranslation(character);
-        }
-
-        private void WriteCode(StringBuilder acc, string character)
-        {
-            acc.Append(character);
-        }
-
-        private void WriteWhitespace(StringBuilder acc)
-        {
-            acc.Append(WHITESPACE);
         }
     }
 }

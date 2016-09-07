@@ -1,7 +1,6 @@
 ﻿using EncriptionAlgorithms;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Algorithms.Test
 {
@@ -36,7 +35,7 @@ namespace Algorithms.Test
             const int encriptionKey = 4;
             var cipher = new CaesarCipher(encriptionKey);
 
-            string caesar = cipher.Encript("lipps asvph");
+            string caesar = cipher.Decript("lipps asvph");
 
             caesar.Should().BeEquivalentTo("hello world");
         }

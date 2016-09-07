@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EncriptionAlgorithms
 {
     public class CaesarCipher
     {
         private int encriptionKey;
-        private const string WHITESPACE = " ";
-        private string[] wordSeparator = { WHITESPACE };
+        private string[] wordSeparator = { " " };
         private List<char> alphabet;
 
         public CaesarCipher(int encriptionKey)
         {
             this.alphabet = GenerateAlphabet();
-
             this.encriptionKey = encriptionKey;
         }
 
@@ -33,16 +30,13 @@ namespace EncriptionAlgorithms
 
         private string Translate(string text, int encriptionKey)
         {
-            StringBuilder pepe = text.ToUpper()
+            CodeGenerator codeGenerator = text.ToUpper()
                                     .Split(wordSeparator, StringSplitOptions.None)
-                                    .Aggregate(new StringBuilder(), (acc, x) =>
-                                    {
-                                        WriteWord(acc, ConvertWord(x, alphabet, encriptionKey));
-                                        WriteWhiteSpace(acc);
-                                        return acc;
-                                    });
+                                    .Aggregate(new CodeGenerator(),
+                                        (generator, word) =>
+                                        generator.WriteWord(ConvertWord(word, alphabet, encriptionKey)));
 
-            return pepe.ToString().TrimEnd();
+            return codeGenerator.Output();
         }
 
         private string ConvertWord(string word, List<char> alphabet, int caesarKey)
@@ -67,16 +61,6 @@ namespace EncriptionAlgorithms
             });
 
             return string.Join(string.Empty, convertedCharacters);
-        }
-
-        private void WriteWord(StringBuilder acc, string word)
-        {
-            acc.Append(word);
-        }
-
-        private void WriteWhiteSpace(StringBuilder acc)
-        {
-            acc.Append(WHITESPACE);
         }
 
         private List<char> GenerateAlphabet()
