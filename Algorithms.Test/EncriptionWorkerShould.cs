@@ -9,9 +9,9 @@ namespace Algorithms.Test
     public class EncriptionWorkerShould
     {
         [TestMethod]
-        public void AcceptEncriptionAlgorithm()
+        public void AcceptMorseEncriptionAlgorithm()
         {
-            var configuration = new EntriptionWorker(new MorseAlgorithm());
+            var configuration = new EntriptionWorker(new MorseCipher());
 
             string encriptedText = configuration.Encript("some text to encript");
 
