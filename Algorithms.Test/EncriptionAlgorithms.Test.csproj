@@ -60,12 +60,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MorseAlgorithm.cs" />
     <Compile Include="MorseEncriptionTestShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EncriptionAlgorithms\EncriptionAlgorithms.csproj">
+      <Project>{baed5651-c554-47d1-b55b-b6774a85d488}</Project>
+      <Name>EncriptionAlgorithms</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,12 +1,11 @@
-﻿using EncriptionAlgorithms.Test;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Algorithms.Test
+namespace EncriptionAlgorithms
 {
-    internal class MorseAlgorithm
+    public class MorseAlgorithm
     {
         private const string WHITESPACE = " ";
 
@@ -27,7 +26,7 @@ namespace Algorithms.Test
             return sb.ToString().TrimEnd();
         }
 
-        internal string DecriptMorse(string morse)
+        public string DecriptMorse(string morse)
         {
             string[] wordSeparator = { " / " };
 
