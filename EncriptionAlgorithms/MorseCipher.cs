@@ -5,11 +5,11 @@ using System.Text;
 
 namespace EncriptionAlgorithms
 {
-    public class MorseAlgorithm
+    public class MorseCipher
     {
         private const string WHITESPACE = " ";
 
-        public string EncriptText(string text)
+        public string Encript(string text)
         {
             var morseDictionary = new NormalMorseDictionary();
 
@@ -26,7 +26,7 @@ namespace EncriptionAlgorithms
             return sb.ToString().TrimEnd();
         }
 
-        public string DecriptMorse(string morse)
+        public string Decript(string morse)
         {
             string[] wordSeparator = { " / " };
 

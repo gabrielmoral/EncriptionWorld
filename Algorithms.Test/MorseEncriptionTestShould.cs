@@ -11,9 +11,9 @@ namespace Algorithms.Test
         [TestMethod]
         public void EncriptTextToMorse()
         {
-            MorseAlgorithm algorithm = new MorseAlgorithm();
+            MorseCipher cipher = new MorseCipher();
 
-            string morse = algorithm.EncriptText("hello world");
+            string morse = cipher.Encript("hello world");
 
             morse.Should().BeEquivalentTo(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
         }
@@ -21,9 +21,9 @@ namespace Algorithms.Test
         [TestMethod]
         public void EncriptMorseToText()
         {
-            MorseAlgorithm algorithm = new MorseAlgorithm();
+            MorseCipher cipher = new MorseCipher();
 
-            string text = algorithm.DecriptMorse(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
+            string text = cipher.Decript(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
 
             text.Should().BeEquivalentTo("hello world");
         }
