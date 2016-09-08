@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace EncriptionAlgorithms
@@ -44,7 +45,14 @@ namespace EncriptionAlgorithms
 
         private string TranslateCode(string character, MorseDictionaryDefinition morseDictionary)
         {
-            return morseDictionary.GetTranslation(character);
+            try
+            {
+                return morseDictionary.GetTranslation(character);
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new InvalidInputException($"The character {character} cannot be encripted");
+            }
         }
     }
 }

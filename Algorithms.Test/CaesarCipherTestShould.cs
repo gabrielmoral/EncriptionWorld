@@ -39,5 +39,15 @@ namespace Algorithms.Test
 
             caesar.Should().BeEquivalentTo("hello world");
         }
+
+        [TestMethod]
+        public void ThrowExceptionIfInvalidCharacter()
+        {
+            const int encriptionKey = 4;
+            var cipher = new CaesarCipher(encriptionKey);
+
+            cipher.Invoking(c => c.Encript("hello ."))
+                  .ShouldThrow<InvalidInputException>();
+        }
     }
 }

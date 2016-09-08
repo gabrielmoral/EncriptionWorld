@@ -1,7 +1,6 @@
 ﻿using EncriptionAlgorithms;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Algorithms.Test
 {
@@ -26,6 +25,15 @@ namespace Algorithms.Test
             string text = cipher.Decript(".... . .-.. .-.. --- / .-- --- .-. .-.. -..");
 
             text.Should().BeEquivalentTo("hello world");
+        }
+
+        [TestMethod]
+        public void ThrowExceptionIfInvalidCharacter()
+        {
+            MorseCipher cipher = new MorseCipher();
+
+            cipher.Invoking(c => c.Encript(".... . .-.. .-.. --- / .-- --- .-. .-.. -.."))
+                  .ShouldThrow<InvalidInputException>();
         }
     }
 }

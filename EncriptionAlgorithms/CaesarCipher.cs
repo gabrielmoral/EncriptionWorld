@@ -43,9 +43,11 @@ namespace EncriptionAlgorithms
         {
             int arrayCorrectorFactor = 1;
 
-            var convertedCharacters = word.Select(x =>
+            var convertedCharacters = word.Select(character =>
             {
-                var characterPosition = alphabet.IndexOf(x);
+                ExistsCharacter(alphabet, character);
+
+                var characterPosition = alphabet.IndexOf(character);
                 var alphabetPosition = characterPosition + caesarKey;
                 var absolutePosition = alphabetPosition + arrayCorrectorFactor;
 
@@ -57,10 +59,15 @@ namespace EncriptionAlgorithms
                 {
                     alphabetPosition = alphabet.Count + characterPosition - encriptionKey;
                 }
-                return alphabet[Math.Abs(alphabetPosition)];
+                return Translate(alphabet, alphabetPosition);
             });
 
             return string.Join(string.Empty, convertedCharacters);
+        }
+
+        private static char Translate(List<char> alphabet, int alphabetPosition)
+        {
+            return alphabet[Math.Abs(alphabetPosition)];
         }
 
         private List<char> GenerateAlphabet()
@@ -68,6 +75,13 @@ namespace EncriptionAlgorithms
             return Enumerable.Range('A', 'Z' - 'A' + 1)
                                                  .Select(c => (char)c)
                                                  .ToList();
+        }
+
+        private static void ExistsCharacter(List<char> alphabet, char character)
+        {
+            if (alphabet.Contains(character)) return;
+
+            throw new InvalidInputException($"Invalid input text");
         }
     }
 }
