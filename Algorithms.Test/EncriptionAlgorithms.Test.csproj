@@ -60,6 +60,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="EncriptionWorkerShould.cs" />
+    <Compile Include="CaesarCipherTestShould.cs" />
     <Compile Include="MorseEncriptionTestShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -40,7 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MorseAlgorithm.cs" />
+    <Compile Include="CaesarCipher.cs" />
+    <Compile Include="EntriptionWorker.cs" />
+    <Compile Include="CodeGenerator.cs" />
+    <Compile Include="ICipher.cs" />
+    <Compile Include="Exceptions\InvalidInputException.cs" />
+    <Compile Include="MorseCipher.cs" />
     <Compile Include="MorseDictionaries\MorseDictionary.cs" />
     <Compile Include="MorseDictionaries\NormalMorseDictionary.cs" />
     <Compile Include="MorseDictionaries\ReverseMorseDictionary.cs" />

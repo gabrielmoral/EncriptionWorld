@@ -1,0 +1,38 @@
+﻿@model EncriptionAlgorithms.Web.Models.EncriptionModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("Action", "Home"))
+{
+    <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Text)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Text)
+        </div>
+    </div>
+
+    <div class="row">
+        <p>
+            <input type="submit" id="encriptButton" name="command" value="Encript" />
+        </p>
+        <p>
+            <input type="submit" id="decriptButton" name="command" value="Decript" />
+        </p>
+        <p>
+            <input type="submit" id="reverseButton" name="command" value="Reverse" />
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ResultText)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ResultText)
+        </div>
+    </div>
+}

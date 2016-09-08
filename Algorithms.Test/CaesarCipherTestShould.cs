@@ -46,7 +46,7 @@ namespace Algorithms.Test
             const int encriptionKey = 4;
             var cipher = new CaesarCipher(encriptionKey);
 
-            cipher.Invoking(c => c.Encript("hello ."))
+            cipher.Invoking(c => c.Encript("hello ···"))
                   .ShouldThrow<InvalidInputException>();
         }
     }
