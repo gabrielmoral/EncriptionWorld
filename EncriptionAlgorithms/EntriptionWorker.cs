@@ -1,19 +1,17 @@
-﻿using System;
-
-namespace EncriptionAlgorithms
+﻿namespace EncriptionAlgorithms
 {
     public class EntriptionWorker
     {
-        private MorseCipher morseAlgorithm;
+        private ICipher cipher;
 
-        public EntriptionWorker(MorseCipher morseAlgorithm)
+        public EntriptionWorker(ICipher morseAlgorithm)
         {
-            this.morseAlgorithm = morseAlgorithm;
+            this.cipher = morseAlgorithm;
         }
 
-        public string Encript(string v)
+        public string Encript(string text)
         {
-            return this.morseAlgorithm.Encript(v);
+            return this.cipher.Encript(text);
         }
     }
 }

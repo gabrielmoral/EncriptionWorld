@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace EncriptionAlgorithms
 {
-    public class CaesarCipher
+    public class CaesarCipher : ICipher
     {
         private int encriptionKey;
         private string[] wordSeparator = { " " };

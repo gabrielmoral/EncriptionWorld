@@ -1,7 +1,6 @@
 ﻿using EncriptionAlgorithms;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Algorithms.Test
 {
@@ -9,9 +8,19 @@ namespace Algorithms.Test
     public class EncriptionWorkerShould
     {
         [TestMethod]
-        public void AcceptMorseEncriptionAlgorithm()
+        public void AcceptMorseCipher()
         {
             var configuration = new EntriptionWorker(new MorseCipher());
+
+            string encriptedText = configuration.Encript("some text to encript");
+
+            encriptedText.Should().NotBeNullOrEmpty();
+        }
+
+        [TestMethod]
+        public void AcceptCaesarCipher()
+        {
+            var configuration = new EntriptionWorker(new CaesarCipher(1));
 
             string encriptedText = configuration.Encript("some text to encript");
 

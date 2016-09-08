@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace EncriptionAlgorithms
 {
-    public class MorseCipher
+    public class MorseCipher : ICipher
     {
         public string Encript(string text)
         {
