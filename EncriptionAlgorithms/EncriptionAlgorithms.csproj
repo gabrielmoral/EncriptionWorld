@@ -40,12 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CaesarCipher.cs" />
+    <Compile Include="Ciphers\CaesarCipher.cs" />
+    <Compile Include="Ciphers\ReverseCipherFactory.cs" />
+    <Compile Include="Ciphers\ReverserCipher.cs" />
     <Compile Include="EntriptionWorker.cs" />
     <Compile Include="CodeGenerator.cs" />
-    <Compile Include="ICipher.cs" />
+    <Compile Include="Ciphers\ICipher.cs" />
     <Compile Include="Exceptions\InvalidInputException.cs" />
-    <Compile Include="MorseCipher.cs" />
+    <Compile Include="Ciphers\MorseCipher.cs" />
     <Compile Include="MorseDictionaries\MorseDictionary.cs" />
     <Compile Include="MorseDictionaries\NormalMorseDictionary.cs" />
     <Compile Include="MorseDictionaries\ReverseMorseDictionary.cs" />

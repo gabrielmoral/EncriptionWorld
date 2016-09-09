@@ -96,6 +96,10 @@
       <Project>{0a26ab47-f025-40ad-a76b-bb6f504953c3}</Project>
       <Name>EncriptionAlgorithms.Web</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EncriptionAlgorithms\EncriptionAlgorithms.csproj">
+      <Project>{BAED5651-C554-47D1-B55B-B6774A85D488}</Project>
+      <Name>EncriptionAlgorithms</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

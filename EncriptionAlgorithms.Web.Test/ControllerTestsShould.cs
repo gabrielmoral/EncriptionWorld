@@ -19,7 +19,7 @@ namespace EncriptionAlgorithms.Web.Test
 
             var model = new EncriptionModel
             {
-                Cipher = Ciphers.Morse,
+                Cipher = Models.Ciphers.Morse,
                 Text = "hello world"
             };
             ViewResult result = (ViewResult)controller.Action(model, encriptCommand);
@@ -36,7 +36,7 @@ namespace EncriptionAlgorithms.Web.Test
 
             var model = new EncriptionModel
             {
-                Cipher = Ciphers.Morse,
+                Cipher = Models.Ciphers.Morse,
                 Text = ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
             };
             ViewResult result = (ViewResult)controller.Action(model, decriptCommand);
@@ -53,7 +53,7 @@ namespace EncriptionAlgorithms.Web.Test
 
             var model = new EncriptionModel
             {
-                Cipher = Ciphers.Caesar,
+                Cipher = Models.Ciphers.Caesar,
                 Text = ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
             };
             ViewResult result = (ViewResult)controller.Action(model, encriptCommand);

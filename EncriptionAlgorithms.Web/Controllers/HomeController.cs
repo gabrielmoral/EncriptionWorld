@@ -28,7 +28,7 @@ namespace EncriptionAlgorithms.Web.Controllers
             }
             catch (InvalidInputException ex)
             {
-                ModelState.AddModelError("Text", ex);
+                ModelState.AddModelError(nameof(model.Text), ex);
             }
 
             return View("Index", model);
