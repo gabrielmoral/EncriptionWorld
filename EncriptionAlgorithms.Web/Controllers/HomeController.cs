@@ -1,45 +1,45 @@
 ﻿using EncriptionAlgorithms.Web.Models;
+using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace EncriptionAlgorithms.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private static IDictionary<Ciphers, ICipher> ciphers = new Dictionary<Ciphers, ICipher>
+        {
+            [Ciphers.Morse] = new MorseCipher(),
+            [Ciphers.Caesar] = new CaesarCipher(1)
+        };
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Action(string text, string command)
+        public ActionResult Action(EncriptionModel encriptionModel, string command)
         {
-            string resultText = string.Empty;
+            Dictionary<string, Func<EncriptionModel, string>> commands = DefineCommands();
 
-            if (command == "Encript")
-            {
-                resultText = EncriptText(text);
-            }
-            else if (command == "Decript")
-            {
-                resultText = DecriptText(text);
-            }
-            else
-            {
-            }
+            string resultText = commands[command](encriptionModel);
 
-            var model = new EncriptionModel { Text = text, ResultText = resultText };
+            var model = new EncriptionModel
+            {
+                Text = encriptionModel.Text,
+                ResultText = resultText
+            };
+
             return View("Index", model);
         }
 
-        private string EncriptText(string text)
+        private static Dictionary<string, Func<EncriptionModel, string>> DefineCommands()
         {
-            var morseCipher = new MorseCipher();
-            return morseCipher.Encript(text);
-        }
-
-        private string DecriptText(string text)
-        {
-            var morseCipher = new MorseCipher();
-            return morseCipher.Decript(text);
+            return new Dictionary<string, Func<EncriptionModel, string>>
+            {
+                ["Encript"] = (m) => ciphers[m.Cipher].Encript(m.Text),
+                ["Decript"] = (m) => ciphers[m.Cipher].Decript(m.Text)
+            };
         }
     }
 }

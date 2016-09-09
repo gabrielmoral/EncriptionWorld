@@ -11,5 +11,16 @@ namespace EncriptionAlgorithms.Web.Models
         [DataType(DataType.MultilineText)]
         [ReadOnly(true)]
         public string ResultText { get; set; }
+
+        public Ciphers Cipher { get; set; }
+    }
+
+    public enum Ciphers
+    {
+        [Display(Name = "Morse cipher")]
+        Morse,
+
+        [Display(Name = "Caesar cipher")]
+        Caesar
     }
 }
