@@ -53,7 +53,7 @@ namespace EncriptionAlgorithms.Web.Test
 
             var model = new EncriptionModel
             {
-                Cipher = Ciphers.Morse,
+                Cipher = Ciphers.Caesar,
                 Text = ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
             };
             ViewResult result = (ViewResult)controller.Action(model, encriptCommand);

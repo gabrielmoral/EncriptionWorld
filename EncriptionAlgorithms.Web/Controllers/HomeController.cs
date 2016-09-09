@@ -7,11 +7,13 @@ namespace EncriptionAlgorithms.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new EncriptionModel());
         }
 
         public ActionResult Action(EncriptionModel encriptionModel, string command)
         {
+            if (!ModelState.IsValid) return View("Index", encriptionModel);
+
             EncriptionModel model = encriptionModel;
 
             try

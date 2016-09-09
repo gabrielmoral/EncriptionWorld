@@ -6,7 +6,11 @@ namespace EncriptionAlgorithms.Web.Models
     public class EncriptionModel
     {
         [DataType(DataType.MultilineText)]
+        [Required]
         public string Text { get; set; }
+
+        [Required]
+        public int CaesarEncriptionKey { get; set; }
 
         [DataType(DataType.MultilineText)]
         [ReadOnly(true)]
