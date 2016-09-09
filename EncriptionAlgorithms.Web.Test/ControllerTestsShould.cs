@@ -45,5 +45,20 @@ namespace EncriptionAlgorithms.Web.Test
 
             returnedModel.ResultText.Should().NotBeNullOrEmpty();
         }
+
+        [TestMethod]
+        public void ReturnInvalidModelWithTheView()
+        {
+            var controller = new HomeController();
+
+            var model = new EncriptionModel
+            {
+                Cipher = Ciphers.Morse,
+                Text = ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
+            };
+            ViewResult result = (ViewResult)controller.Action(model, encriptCommand);
+
+            controller.ModelState.IsValid.Should().BeFalse();
+        }
     }
 }

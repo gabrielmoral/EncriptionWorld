@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncriptionAlgorithms", "Enc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncriptionAlgorithms.Web", "EncriptionAlgorithms.Web\EncriptionAlgorithms.Web.csproj", "{0A26AB47-F025-40AD-A76B-BB6F504953C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncriptionAlgorithms.Web.Test", "EncriptionAlgorithms.Web.Test\EncriptionAlgorithms.Web.Test.csproj", "{5C0786AC-8AC8-4CFD-A738-7BAD2AF4832D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0A26AB47-F025-40AD-A76B-BB6F504953C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A26AB47-F025-40AD-A76B-BB6F504953C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A26AB47-F025-40AD-A76B-BB6F504953C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0786AC-8AC8-4CFD-A738-7BAD2AF4832D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0786AC-8AC8-4CFD-A738-7BAD2AF4832D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0786AC-8AC8-4CFD-A738-7BAD2AF4832D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0786AC-8AC8-4CFD-A738-7BAD2AF4832D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
